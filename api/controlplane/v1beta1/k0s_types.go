@@ -79,7 +79,7 @@ type K0sControlPlane struct {
 
 	Spec K0sControlPlaneSpec `json:"spec,omitempty"`
 
-	// +kubebuilder:default:={version:""}
+	// +kubebuilder:default={version:"",ready:false,initialized:false,conditions: {{type: "ControlPlaneReady", status: "Unknown", reason:"ControlPlaneDoesNotExist", message:"Waiting for cluster topology to be reconciled", lastTransitionTime: "1970-01-01T00:00:00Z"}}}
 	Status K0sControlPlaneStatus `json:"status,omitempty"`
 }
 

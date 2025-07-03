@@ -362,6 +362,14 @@ spec:
             type: object
           status:
             default:
+              conditions:
+              - lastTransitionTime: "1970-01-01T00:00:00Z"
+                message: Waiting for cluster topology to be reconciled
+                reason: ControlPlaneDoesNotExist
+                status: Unknown
+                type: ControlPlaneReady
+              initialized: false
+              ready: false
               version: ""
             properties:
               conditions:

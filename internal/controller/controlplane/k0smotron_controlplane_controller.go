@@ -493,37 +493,18 @@ func (c *K0smotronController) computeStatus(ctx context.Context, cluster types.N
 // and checking if the control plane is initialized
 func (c *K0smotronController) computeAvailability(ctx context.Context, cluster *clusterv1.Cluster, kcp *cpv1beta1.K0smotronControlPlane) {
 	logger := log.FromContext(ctx).WithValues("cluster", cluster.Name)
-	logger.Info("Computed status", "status", kcp.Status)
+	statusAdapter := &K0smotronControlPlaneStatusAdapter{kcp: kcp}
 
-	// Check if the control plane is ready by connecting to the API server
-	// and checking if the control plane is initialized
-	logger.Info("Pinging the workload cluster API")
-
-	// Get the CAPI cluster accessor
-	client, err := remote.NewClusterClient(ctx, "k0smotron", c.Client, capiutil.ObjectKey(cluster))
-	if err != nil {
-		logger.Info("Failed to create cluster client", "error", err)
-		return
-	}
-
-	pingCtx, cancel := context.WithTimeout(ctx, 10*time.Second)
-	defer cancel()
-
-	// If we can get 'kube-system' namespace, it's safe to say the API is up-and-running
-	ns := &corev1.Namespace{}
-	nsKey := types.NamespacedName{
-		Namespace: "",
-		Name:      "kube-system",
-	}
-	err = client.Get(pingCtx, nsKey, ns)
-	if err != nil {
-		logger.Info("Failed to get namespace", "error", err)
-		return
-	}
-
-	logger.Info("Successfully pinged the workload cluster API")
-	kcp.Status.Ready = true
-	kcp.Status.Initialized = true
+	computeAvailability(
+		ctx,
+		c.Client,
+		cluster,
+		nil, // K0sControlPlane (not used)
+		kcp, // K0smotronControlPlane
+		statusAdapter,
+		"k0smotron",
+		logger,
+	)
 }
 
 func (c *K0smotronController) getComparableK0sVersionRunningInPod(ctx context.Context, pod *corev1.Pod) (*version.Version, error) {
