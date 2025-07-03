@@ -61,7 +61,15 @@ func (c *K0sController) updateStatus(ctx context.Context, kcp *cpv1beta1.K0sCont
 
 	defer func() {
 		// The availability of a controlplane is computed in the same way regardless of the type of strategy followed for its upgrade.
-		c.computeAvailability(ctx, cluster, kcp, logger)
+		// Only compute availability if ReadyReplicas > 0 and either Initialized or Ready is false
+		if kcp.Status.ReadyReplicas > 0 && (!kcp.Status.Initialized || !kcp.Status.Ready) {
+			c.computeAvailability(ctx, cluster, kcp, logger)
+		}
+
+		// Set the k0s cluster ID annotation
+		annotations.AddAnnotations(cluster, map[string]string{
+			cpv1beta1.K0sClusterIDAnnotation: fmt.Sprintf("kube-system:%s", ns.GetUID()),
+		})
 	}()
 
 	kcp.Status.Selector = collections.ControlPlaneSelectorForCluster(cluster.Name).String()
@@ -303,7 +311,7 @@ func (c *K0sController) computeAvailability(ctx context.Context, cluster *cluste
 	// and checking if the control plane is initialized
 	logger.Info("Pinging the workload cluster API")
 	// Get the CAPI cluster accessor
-	client, err := remote.NewClusterClient(ctx, "", c.Client, util.ObjectKey(cluster))
+	client, err := remote.NewClusterClient(ctx, "k0smotron", c.Client, util.ObjectKey(cluster))
 	if err != nil {
 		logger.Info("Failed to create cluster client", "error", err)
 		// Set a condition for this so we can determine later if we should requeue the reconciliation
@@ -329,11 +337,6 @@ func (c *K0sController) computeAvailability(ctx context.Context, cluster *cluste
 	conditions.MarkTrue(kcp, cpv1beta1.ControlPlaneReadyCondition)
 	kcp.Status.Ready = true
 	kcp.Status.Initialized = true
-
-	// Set the k0s cluster ID annotation
-	annotations.AddAnnotations(cluster, map[string]string{
-		cpv1beta1.K0sClusterIDAnnotation: fmt.Sprintf("kube-system:%s", ns.GetUID()),
-	})
 }
 
 func getVersionSuffix(version string) string {
