@@ -4594,6 +4594,7 @@ spec:
                 reason: ControlPlaneDoesNotExist
                 status: Unknown
                 type: ControlPlaneReady
+              externalManagedControlPlane: true
               initialization:
                 controlPlaneInitialized: false
               initialized: false
