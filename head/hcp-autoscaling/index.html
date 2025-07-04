@@ -12,13 +12,13 @@
         <meta name="author" content="Mirantis, Inc.">
       
       
-        <link rel="canonical" href="https://docs.k0smotron.io/head/join-nodes/">
+        <link rel="canonical" href="https://docs.k0smotron.io/head/hcp-autoscaling/">
       
       
-        <link rel="prev" href="../cluster/">
+        <link rel="prev" href="../ha/">
       
       
-        <link rel="next" href="../configuration/">
+        <link rel="next" href="../cluster-api/">
       
       
       <link rel="icon" href="../img/k0s_social.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Join a worker node - Documentation</title>
+        <title>Autoscaling - Documentation</title>
       
     
     
@@ -87,7 +87,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#join-a-worker-node" class="md-skip">
+        <a href="#using-horizontal-pod-autoscaler-hpa-for-k0smotroniocluster" class="md-skip">
           Skip to content
         </a>
       
@@ -138,7 +138,7 @@ You are not currently viewing the documentation for the current stable release o
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Join a worker node
+              Autoscaling
             
           </span>
         </div>
@@ -474,19 +474,10 @@ You are not currently viewing the documentation for the current stable release o
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../join-nodes/" class="md-nav__link">
         
   
   
@@ -497,7 +488,6 @@ You are not currently viewing the documentation for the current stable release o
   
 
       </a>
-      
     </li>
   
 
@@ -576,10 +566,32 @@ You are not currently viewing the documentation for the current stable release o
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../hcp-autoscaling/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Autoscaling
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -590,6 +602,95 @@ You are not currently viewing the documentation for the current stable release o
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-by-step-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step-by-Step Guide
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step-by-Step Guide">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-install-metrics-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Install Metrics Server
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-define-resource-requests-and-limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Define Resource Requests and Limits
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-create-an-hpa" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Create an HPA
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-verify-hpa" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Verify HPA
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1658,6 +1759,83 @@ You are not currently viewing the documentation for the current stable release o
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-by-step-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step-by-Step Guide
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step-by-Step Guide">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-install-metrics-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Install Metrics Server
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-define-resource-requests-and-limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Define Resource Requests and Limits
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-create-an-hpa" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Create an HPA
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-verify-hpa" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Verify HPA
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1672,92 +1850,77 @@ You are not currently viewing the documentation for the current stable release o
 
 
 
-<h1 id="join-a-worker-node">Join a worker node<a class="headerlink" href="#join-a-worker-node" title="Permanent link">#</a></h1>
-<p>Joining worker nodes to your control plane is similar to the process of
-<a href="https://docs.k0sproject.io/stable/k0s-multi-node/#4-add-workers-to-the-cluster">joining worker nodes with k0s</a>.
-You need to obtain a join token that establishes mutual trust between the worker node
-and control plane, allowing the node to join the cluster as worker.</p>
-<p><strong>To join a worker node to the cluster:</strong></p>
-<ol>
-<li>
-<p>Obtain a join token:</p>
-<ol>
-<li>
-<p>Create a <code>JoinTokenRequest</code> resource to generate a join token for the
-    worker node. For example:</p>
+<h1 id="using-horizontal-pod-autoscaler-hpa-for-k0smotroniocluster">Using Horizontal Pod Autoscaler (HPA) for k0smotron.io/Cluster<a class="headerlink" href="#using-horizontal-pod-autoscaler-hpa-for-k0smotroniocluster" title="Permanent link">#</a></h1>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">#</a></h2>
+<p>Horizontal Pod Autoscaler (HPA) automatically scales the number of pods in a Kubernetes cluster based on observed CPU utilization (or other select metrics). This guide will walk you through the steps to set up and use HPA for <code>k0smotron.io/Cluster</code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Due to etcd maintanance challenges, k0smotron <strong>never</strong> scales etcd statefulsets down, only up. 
+This means that HPA will scale up both control-plane and etcd, but scale down only control-plane pods.</p>
+</div>
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">#</a></h2>
+<ul>
+<li>A running Kubernetes cluster</li>
+<li><code>kubectl</code> command-line tool installed and configured</li>
+<li>Metrics Server installed in your cluster</li>
+</ul>
+<h2 id="step-by-step-guide">Step-by-Step Guide<a class="headerlink" href="#step-by-step-guide" title="Permanent link">#</a></h2>
+<h3 id="1-install-metrics-server">1. Install Metrics Server<a class="headerlink" href="#1-install-metrics-server" title="Permanent link">#</a></h3>
+<p>Metrics Server is a cluster-wide aggregator of resource usage data. It is required for HPA to function.
+<a href="https://k0sproject.io/">k0s</a> brings metrics-server by default, but you can install it manually if needed.</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+</code></pre></div>
+<h3 id="2-define-resource-requests-and-limits">2. Define Resource Requests and Limits<a class="headerlink" href="#2-define-resource-requests-and-limits" title="Permanent link">#</a></h3>
+<p>Ensure your k0smotron.io/Cluster has CPU and/or memory requests and limits defined. HPA uses these values to make scaling decisions.  Example k0smotron.io/Cluster definition:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">k0smotron.io/v1beta1</span>
-<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">JoinTokenRequest</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cluster</span>
 <span class="nt">metadata</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-token</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example-cluster</span>
 <span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
 <span class="nt">spec</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">clusterRef</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-cluster</span>
-<span class="w">    </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
-<span class="w">  </span><span class="nt">expiry</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1h</span>
+<span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;v1.31.5-k0s.0&quot;</span>
+<span class="w">  </span><span class="nt">service</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NodePort</span>
+<span class="w">  </span><span class="nt">resources</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">requests</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;100m&quot;</span>
+<span class="w">      </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;100Mi&quot;</span>
 </code></pre></div>
-<div class="admonition tip token expiry configuration">
-<p class="admonition-title">Tip</p>
-<p>The <code>expiry</code> field defines the expiration time of the token.
-Refer to <a href="../resource-reference/k0smotron.io-v1beta1/#JoinTokenRequest.spec">API reference: JoinTokenRequest.spec</a>
-for the configuration details.</p>
-</div>
-<p>k0smotron processes the <code>JoinTokenRequest</code> resource and creates
-   a <code>Secret</code> resource:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
-<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Secret</span>
+<h3 id="3-create-an-hpa">3. Create an HPA<a class="headerlink" href="#3-create-an-hpa" title="Permanent link">#</a></h3>
+<p>Create an HPA resource to automatically scale your k0smotron.io/Cluster based on CPU utilization.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">autoscaling/v2beta2</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HorizontalPodAutoscaler</span>
 <span class="nt">metadata</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-token</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example-hpa</span>
 <span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
-<span class="w">  </span><span class="nt">labels</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">k0smotron.io/cluster</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-cluster.default</span>
-<span class="w">    </span><span class="nt">k0smotron.io/role</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">worker</span>
-<span class="w">    </span><span class="nt">k0smotron.io/token-request</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-token</span>
-<span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Opaque</span>
-<span class="nt">data</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;base64-encoded-token&gt;</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">scaleTargetRef</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">k0smotron.io/v1beta1</span>
+<span class="w">    </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cluster</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example-cluster</span>
+<span class="w">  </span><span class="nt">minReplicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">  </span><span class="nt">maxReplicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<span class="w">  </span><span class="nt">metrics</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Resource</span>
+<span class="w">    </span><span class="nt">resource</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cpu</span>
+<span class="w">      </span><span class="nt">target</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Utilization</span>
+<span class="w">        </span><span class="nt">averageUtilization</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">50</span>
 </code></pre></div>
-<p>The <code>token</code> field contains the base64-encoded token that you can use
-  to join a worker node to the cluster.</p>
-</li>
-<li>
-<p>Retrieve the decoded join token from the generated <code>Secret</code>:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>secret<span class="w"> </span>my-token<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.data.token}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>-d
+<p>Apply the HPA:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>hpa<span class="w"> </span>-n<span class="w"> </span>default
 </code></pre></div>
-</li>
-</ol>
-</li>
-<li>
-<p>Install <code>k0s</code> on the worker node:</p>
-<ol>
-<li>
-<p>Ensure that the <code>k0s</code> binary is installed on the worker node:</p>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-sSLf<span class="w"> </span>https://get.k0s.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>sh
+<h3 id="4-verify-hpa">4. Verify HPA<a class="headerlink" href="#4-verify-hpa" title="Permanent link">#</a></h3>
+<p>Check the status of your HPA to ensure it is working correctly.</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>hpa<span class="w"> </span>-n<span class="w"> </span>default
 </code></pre></div>
-</li>
-<li>
-<p>Verify that the k0s version in the worker node matches the k0s version
-    installed on the control plane. If needed, you can adjust the k0s version
-    using the <code>K0S_VERSION</code> environment variable.</p>
-</li>
-</ol>
-</li>
-<li>
-<p>Join the worker node specifying the join token created earlier:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>k0s<span class="w"> </span>install<span class="w"> </span>worker<span class="w"> </span>--token-file<span class="w"> </span>/path/to/token/file
-sudo<span class="w"> </span>k0s<span class="w"> </span>start
+<p>You should see output similar to:</p>
+<div class="highlight"><pre><span></span><code>NAME<span class="w">         </span>REFERENCE<span class="w">               </span>TARGETS<span class="w">   </span>MINPODS<span class="w">   </span>MAXPODS<span class="w">   </span>REPLICAS<span class="w">   </span>AGE
+example-hpa<span class="w">  </span>Cluster/example-cluster<span class="w">  </span><span class="m">10</span>%/50%<span class="w">    </span><span class="m">1</span><span class="w">         </span><span class="m">10</span><span class="w">        </span><span class="m">1</span><span class="w">          </span>1m
 </code></pre></div>
-</li>
-<li>
-<p>Delete the <code>JoinTokenRequest</code> resource to invalidate the issued token:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>delete<span class="w"> </span>jointokenrequest<span class="w"> </span>my-token
-</code></pre></div>
-</li>
-</ol>
-<div class="admonition note see also">
-<p class="admonition-title">Note</p>
-<p><a href="../resource-reference/k0smotron.io-v1beta1/#JoinTokenRequest.spec">API reference: JoinTokenRequest.spec</a></p>
-</div>
+<p>You have successfully set up Horizontal Pod Autoscaler (HPA) for your k0smotron.io/Cluster. HPA will now automatically adjust the number of pods in your cluster based on the specified metrics.  For more information, refer to the <a href="https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/">Kubernetes HPA documentation</a>.</p>
 
 
 

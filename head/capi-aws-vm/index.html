@@ -560,6 +560,29 @@ You are not currently viewing the documentation for the current stable release o
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hcp-autoscaling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Autoscaling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1520,9 +1543,20 @@ You are not currently viewing the documentation for the current stable release o
   
   
   
-    <li class="md-nav__item">
-      <a href="../resource-reference/" class="md-nav__link">
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_11_1" id="__nav_11_1_label" tabindex="0">
+            
   
   
   <span class="md-ellipsis">
@@ -1531,7 +1565,111 @@ You are not currently viewing the documentation for the current stable release o
   </span>
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_11_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11_1">
+            <span class="md-nav__icon md-icon"></span>
+            Custom resources
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resource-reference/bootstrap.cluster.x-k8s.io-v1beta1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    bootstrap.cluster.x-k8s.io/v1beta1
+    
+  </span>
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resource-reference/controlplane.cluster.x-k8s.io-v1beta1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    controlplane.cluster.x-k8s.io/v1beta1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resource-reference/infrastructure.cluster.x-k8s.io-v1beta1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    infrastructure.cluster.x-k8s.io/v1beta1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resource-reference/k0smotron.io-v1beta1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    k0smotron.io/v1beta1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1694,7 +1832,6 @@ This can be done by setting <code>AWSMachineTemplate.spec.template.spec.uncompre
 <span class="w">        </span><span class="c1"># Replace with your AMI ID</span>
 <span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ami-046da914e42bb0388</span><span class="w"> </span><span class="c1"># Ubuntu 22.04 in eu-west-1</span>
 <span class="w">      </span><span class="nt">instanceType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">t3.large</span>
-<span class="w">      </span><span class="nt">publicIP</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">      </span><span class="nt">iamInstanceProfile</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nodes.cluster-api-provider-aws.sigs.k8s.io</span><span class="w"> </span><span class="c1"># Instance Profile created by `clusterawsadm bootstrap iam create-cloudformation-stack`</span>
 <span class="w">      </span><span class="nt">cloudInit</span><span class="p">:</span>
 <span class="w">        </span><span class="c1"># Makes CAPA use k0s bootstrap cloud-init directly and not via SSM</span>
@@ -1747,6 +1884,45 @@ This can be done by setting <code>AWSMachineTemplate.spec.template.spec.uncompre
 <span class="w">        </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tcp</span>
 <span class="w">        </span><span class="nt">fromPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">9443</span>
 <span class="w">        </span><span class="nt">toPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">9443</span>
+<span class="nn">---</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cluster.x-k8s.io/v1beta1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MachineDeployment</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">k0s-aws-test-md</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">clusterName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aws-test-cluster</span>
+<span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">cluster.x-k8s.io/cluster-name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aws-test-cluster</span>
+<span class="w">      </span><span class="nt">pool</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">worker-pool-1</span>
+<span class="w">  </span><span class="nt">template</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">metadata</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">labels</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">cluster.x-k8s.io/cluster-name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aws-test-cluster</span>
+<span class="w">        </span><span class="nt">pool</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">worker-pool-1</span>
+<span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">clusterName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aws-test-cluster</span>
+<span class="w">      </span><span class="nt">failureDomain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eu-west-1</span>
+<span class="w">      </span><span class="nt">bootstrap</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">configRef</span><span class="p">:</span><span class="w"> </span><span class="c1"># This triggers our controller to create cloud-init secret</span>
+<span class="w">          </span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bootstrap.cluster.x-k8s.io/v1beta1</span>
+<span class="w">          </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">K0sWorkerConfigTemplate</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">k0s-aws-test-machine-config</span>
+<span class="w">      </span><span class="nt">infrastructureRef</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">infrastructure.cluster.x-k8s.io/v1beta2</span>
+<span class="w">        </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AWSMachineTemplate</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">k0s-aws-test-mt</span>
+<span class="nn">---</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bootstrap.cluster.x-k8s.io/v1beta1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">K0sWorkerConfigTemplate</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">k0s-aws-test-machine-config</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">template</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1.33.2+k0s.0</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>%<span class="w"> </span>kubectl<span class="w"> </span>get<span class="w"> </span>cluster,machine
 NAME<span class="w">                                        </span>CLUSTERCLASS<span class="w">   </span>PHASE<span class="w">         </span>AGE<span class="w">   </span>VERSION
