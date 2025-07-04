@@ -469,16 +469,12 @@ func (c *K0smotronController) computeStatus(ctx context.Context, cluster types.N
 		kcp.Status.Version = minimumVersion.String()
 	}
 
-	// Set ready and initialized status based on actual API server availability.
-	// These are one-time flags indicating initial provisioning completion and should not be changed once set to true.
-	if kcp.Status.ReadyReplicas > 0 && (!kcp.Status.Initialized || !kcp.Status.Ready) {
-		clusterObj := &clusterv1.Cluster{}
-		err = c.Client.Get(ctx, cluster, clusterObj)
-		if err != nil {
-			return err
-		}
-		c.computeAvailability(ctx, clusterObj, kcp)
+	clusterObj := &clusterv1.Cluster{}
+	err = c.Client.Get(ctx, cluster, clusterObj)
+	if err != nil {
+		return err
 	}
+	c.computeAvailability(ctx, clusterObj, kcp)
 
 	// if no replicas are yet available or the desired version is not in the current state of the
 	// control plane, the reconciliation is requeued waiting for the desired replicas to become available.
