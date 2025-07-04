@@ -1752,7 +1752,7 @@ More info: http://kubernetes.io/docs/user-guide/labels<br/>
         <td>
           <br/>
           <br/>
-            <i>Default</i>: map[conditions:[map[lastTransitionTime:1970-01-01T00:00:00Z message:Waiting for cluster topology to be reconciled reason:ControlPlaneDoesNotExist status:Unknown type:ControlPlaneReady]] initialization:map[controlPlaneInitialized:false] initialized:false ready:false version:]<br/>
+            <i>Default</i>: map[conditions:[map[lastTransitionTime:1970-01-01T00:00:00Z message:Waiting for cluster topology to be reconciled reason:ControlPlaneDoesNotExist status:Unknown type:ControlPlaneReady]] externalManagedControlPlane:true initialization:map[controlPlaneInitialized:false] initialized:false ready:false version:]<br/>
         </td>
         <td>false</td>
       </tr></tbody>
