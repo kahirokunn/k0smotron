@@ -321,8 +321,10 @@ func getVersionSuffix(version string) string {
 type Status interface {
 	SetReady(bool)
 	SetInitialized(bool)
+	SetControlPlaneInitialized(bool)
 	GetReady() bool
 	GetInitialized() bool
+	GetControlPlaneInitialized() bool
 }
 
 // K0sControlPlaneStatusAdapter adapts K0sControlPlane for common status operations
@@ -338,12 +340,20 @@ func (a *K0sControlPlaneStatusAdapter) SetInitialized(initialized bool) {
 	a.kcp.Status.Initialized = initialized
 }
 
+func (a *K0sControlPlaneStatusAdapter) SetControlPlaneInitialized(controlPlaneInitialized bool) {
+	a.kcp.Status.Initialization.ControlPlaneInitialized = controlPlaneInitialized
+}
+
 func (a *K0sControlPlaneStatusAdapter) GetReady() bool {
 	return a.kcp.Status.Ready
 }
 
 func (a *K0sControlPlaneStatusAdapter) GetInitialized() bool {
 	return a.kcp.Status.Initialized
+}
+
+func (a *K0sControlPlaneStatusAdapter) GetControlPlaneInitialized() bool {
+	return a.kcp.Status.Initialization.ControlPlaneInitialized
 }
 
 // K0smotronControlPlaneStatusAdapter adapts K0smotronControlPlane for common status operations
@@ -359,12 +369,20 @@ func (a *K0smotronControlPlaneStatusAdapter) SetInitialized(initialized bool) {
 	a.kcp.Status.Initialized = initialized
 }
 
+func (a *K0smotronControlPlaneStatusAdapter) SetControlPlaneInitialized(controlPlaneInitialized bool) {
+	a.kcp.Status.Initialization.ControlPlaneInitialized = controlPlaneInitialized
+}
+
 func (a *K0smotronControlPlaneStatusAdapter) GetReady() bool {
 	return a.kcp.Status.Ready
 }
 
 func (a *K0smotronControlPlaneStatusAdapter) GetInitialized() bool {
 	return a.kcp.Status.Initialized
+}
+
+func (a *K0smotronControlPlaneStatusAdapter) GetControlPlaneInitialized() bool {
+	return a.kcp.Status.Initialization.ControlPlaneInitialized
 }
 
 // checkAPIConnectivity performs the actual API connectivity check
@@ -472,5 +490,7 @@ func computeAvailability(
 	if apiAvailable {
 		statusAdapter.SetReady(true)
 		statusAdapter.SetInitialized(true)
+		// Set the new v1beta2 controlPlaneInitialized field to true
+		statusAdapter.SetControlPlaneInitialized(true)
 	}
 }

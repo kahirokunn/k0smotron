@@ -68,7 +68,7 @@ Resource Types:
         <td>
           <br/>
           <br/>
-            <i>Default</i>: map[conditions:[map[lastTransitionTime:1970-01-01T00:00:00Z message:Waiting for cluster topology to be reconciled reason:ControlPlaneDoesNotExist status:Unknown type:ControlPlaneReady]] initialized:false ready:false version:]<br/>
+            <i>Default</i>: map[conditions:[map[lastTransitionTime:1970-01-01T00:00:00Z message:Waiting for cluster topology to be reconciled reason:ControlPlaneDoesNotExist status:Unknown type:ControlPlaneReady]] initialization:map[controlPlaneInitialized:false] initialized:false ready:false version:]<br/>
         </td>
         <td>false</td>
       </tr></tbody>
@@ -775,6 +775,13 @@ More info: http://kubernetes.io/docs/user-guide/labels<br/>
         </td>
         <td>false</td>
       </tr><tr>
+        <td><b><a href="#k0scontrolplanestatusinitialization">initialization</a></b></td>
+        <td>object</td>
+        <td>
+          initialization represents the initialization status of the control plane<br/>
+        </td>
+        <td>false</td>
+      </tr><tr>
         <td><b>initialized</b></td>
         <td>boolean</td>
         <td>
@@ -924,6 +931,33 @@ This field may not be empty.<br/>
           Severity provides an explicit classification of Reason code, so the users or machines can immediately
 understand the current situation and act accordingly.
 The Severity field MUST be set only when Status=False.<br/>
+        </td>
+        <td>false</td>
+      </tr></tbody>
+</table>
+
+
+### K0sControlPlane.status.initialization
+<sup><sup>[↩ Parent](#k0scontrolplanestatus)</sup></sup>
+
+
+
+initialization represents the initialization status of the control plane
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Required</th>
+        </tr>
+    </thead>
+    <tbody><tr>
+        <td><b>controlPlaneInitialized</b></td>
+        <td>boolean</td>
+        <td>
+          controlPlaneInitialized indicates whether the control plane is initialized<br/>
         </td>
         <td>false</td>
       </tr></tbody>
@@ -1718,7 +1752,7 @@ More info: http://kubernetes.io/docs/user-guide/labels<br/>
         <td>
           <br/>
           <br/>
-            <i>Default</i>: map[conditions:[map[lastTransitionTime:1970-01-01T00:00:00Z message:Waiting for cluster topology to be reconciled reason:ControlPlaneDoesNotExist status:Unknown type:ControlPlaneReady]] initialized:false ready:false version:]<br/>
+            <i>Default</i>: map[conditions:[map[lastTransitionTime:1970-01-01T00:00:00Z message:Waiting for cluster topology to be reconciled reason:ControlPlaneDoesNotExist status:Unknown type:ControlPlaneReady]] initialization:map[controlPlaneInitialized:false] initialized:false ready:false version:]<br/>
         </td>
         <td>false</td>
       </tr></tbody>
@@ -10828,6 +10862,13 @@ merge patch.<br/>
         </td>
         <td>false</td>
       </tr><tr>
+        <td><b><a href="#k0smotroncontrolplanestatusinitialization">initialization</a></b></td>
+        <td>object</td>
+        <td>
+          initialization represents the initialization status of the control plane<br/>
+        </td>
+        <td>false</td>
+      </tr><tr>
         <td><b>initialized</b></td>
         <td>boolean</td>
         <td>
@@ -10970,6 +11011,33 @@ This field may not be empty.<br/>
           Severity provides an explicit classification of Reason code, so the users or machines can immediately
 understand the current situation and act accordingly.
 The Severity field MUST be set only when Status=False.<br/>
+        </td>
+        <td>false</td>
+      </tr></tbody>
+</table>
+
+
+### K0smotronControlPlane.status.initialization
+<sup><sup>[↩ Parent](#k0smotroncontrolplanestatus)</sup></sup>
+
+
+
+initialization represents the initialization status of the control plane
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Required</th>
+        </tr>
+    </thead>
+    <tbody><tr>
+        <td><b>controlPlaneInitialized</b></td>
+        <td>boolean</td>
+        <td>
+          controlPlaneInitialized indicates whether the control plane is initialized<br/>
         </td>
         <td>false</td>
       </tr></tbody>
